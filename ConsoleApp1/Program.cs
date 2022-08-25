@@ -10,10 +10,12 @@ namespace ConsoleApp1
         {
             try
             {
-                using (var reader = new StreamReader(@"C:\flyvning1.csv"))
+                // @"C:\Users\Mathias Baasch\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\net5.0\flyvning1.csv"
+                //@"C:\flyvning1.csv"
+                using (var reader = new StreamReader("flyvning1.csv"))
                 {
-                    List<string> ExportSVC = new List<string>();
-                    List<string> DataArrays = new List<string>();
+                    List<string> exportSVC = new List<string>();
+                    List<string> dataArrays = new List<string>();
                     List<string> gpsLong = new List<string>();
                     List<string> gpsLat = new List<string>();
 
@@ -21,14 +23,14 @@ namespace ConsoleApp1
                     {
                         string line = reader.ReadLine();
                         string[] values = line.Split(";");
-                        gpsLong.Add(values[2]);
+                        gpsLat.Add(values[2]);
                         gpsLong.Add(values[3]);
                     }
 
                     for (int i = 2; i < gpsLong.Count - 1; i++)
                     {
                         gpsLong[i] = gpsLong[i].Replace(".",string.Empty);
-                        gpsLong[i] = gpsLong[i].Insert(1, ".");
+                        gpsLong[i] = gpsLong[i].Insert(2, ".");
                     }
                     for (int i = 2; i < gpsLat.Count - 1; i++)
                     {
@@ -44,7 +46,6 @@ namespace ConsoleApp1
             }
             catch (Exception e)
             {
-
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
             }
